@@ -1,5 +1,6 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { locationState } from '../recoil/atoms';
+import { Location } from '../enums/Location.enum';
 
    interface Props {
     
@@ -15,7 +16,7 @@ export const Screen: React.FC = () => {
     
     const move = (e: React.MouseEvent) => {
         console.log("Walking...");
-        setLocation('forest.jpg');
+        setLocation(Location.Forest);
     }
 
    return (
