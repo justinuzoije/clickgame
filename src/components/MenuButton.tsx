@@ -2,10 +2,9 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { locationState } from '../recoil/atoms';
 import { textState } from '../recoil/atoms';
 import { Location } from '../enums/Location.enum';
-import { MenuButton } from '../components/MenuButton';
 
-   interface Props {
-    
+interface Props {
+  location: Location;
 }
 
 // A big set of switch statemnts each with a different description. That dpeends on the location
@@ -15,22 +14,15 @@ import { MenuButton } from '../components/MenuButton';
 
 
 
-export const Menu: React.FC = () => {
-    const [location, setLocation] = useRecoilState(locationState);
-    const locations = [
-       { location: Location.Forest, label: 'Forest' },
-       { location: Location.ForestEntrance, label: 'Forest Entrance' },
-       { location: Location.Forest3, label: 'Forest 3' },
-       { location: Location.Forest4, label: 'Forest 4' }
-    ];
+export const MenuButton: React.FC<Props> = ({children, location}) => {
+    const setLocation = useSetRecoilState(locationState);
 
    return (
     //    <div onClick={clickText}>
-       <div>
-          {
-          locations.map((l, index) => <MenuButton key={index} location={l.location}>{l.label}</MenuButton>)
-}
-       </div>
+       
+        <button onClick={() => setLocation(location)}>
+            {children}
+       </button>
 
    )
 }
