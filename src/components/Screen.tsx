@@ -17,7 +17,7 @@ export const Screen: React.FC = () => {
     
     const move = (e: React.MouseEvent) => {
         console.log("Walking...");
-        setLocation(Location.Forest);
+        //setLocation(Location.Forest);
     }
 
    return (

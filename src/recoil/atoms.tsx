@@ -3,7 +3,12 @@ import { Location } from '../enums/Location.enum';
 
 export const locationState = atom({
     key: 'locationState', // unique ID (with respect to other atoms/selectors)
-    default: Location.ForestEntrance, // default value (aka initial value)
+    default: Location.Forest1, // default value (aka initial value)
+  });
+
+export const destinationState = atom({
+    key: 'destinationState', // unique ID (with respect to other atoms/selectors)
+    default: 'Choose a destination', // default value (aka initial value)
   });
 
 export const textState = atom({

@@ -3,6 +3,8 @@ import { locationState } from '../recoil/atoms';
 import { textState } from '../recoil/atoms';
 import { Location } from '../enums/Location.enum';
 import { MenuButton } from '../components/MenuButton';
+import { destinationState } from '../recoil/atoms';
+import { destinations } from '../data/destinations';
 
    interface Props {
     
@@ -18,10 +20,10 @@ import { MenuButton } from '../components/MenuButton';
 export const Menu: React.FC = () => {
     const [location, setLocation] = useRecoilState(locationState);
     const locations = [
-       { location: Location.Forest, label: 'Forest' },
-       { location: Location.ForestEntrance, label: 'Forest Entrance' },
-       { location: Location.Forest3, label: 'Forest 3' },
-       { location: Location.Forest4, label: 'Forest 4' }
+       { location: Location.Forest1, label: destinations[Location.Forest1].label },
+       { location: Location.Forest2, label: destinations[Location.Forest2].label },
+       { location: Location.Forest3, label: destinations[Location.Forest3].label },
+       { location: Location.Forest4, label: destinations[Location.Forest4].label }
     ];
 
    return (
