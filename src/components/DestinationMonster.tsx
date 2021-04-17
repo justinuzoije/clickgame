@@ -31,3 +31,9 @@ export const DestinationMonster: React.FC = () => {
 //Make the destinations have different chances of showing a monster. Associated with the Destination. Make it a percentage like 0.5 (between 0 and 1)
 // This would be on line 16, 1/chance  * availableMonsters.length
 // This is  the chance of a monster appearing on a particular DESTINATION 
+
+// CSS Image Filter when you click
+
+
+
+// Use JavaScript Music and sound API. Load them up as MP3s
