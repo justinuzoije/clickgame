@@ -13,9 +13,31 @@ import { monsters } from '../data/monsters';
 //TODO add ES Lint file from honeylove
 const getActiveMonster = (location: Location): Monster | undefined  => {
   const availableMonsters = destinations[location].monsters;
-  const index = Math.floor(Math.random() * availableMonsters.length);
+  const monsterChance = 1/(destinations[location].safetyLevel);
+  console.log('monsterChance', monsterChance);
+  const index = Math.floor(Math.random() * monsterChance * availableMonsters.length);
+  // Math.floor takes a number and takes off the trailing number. Math.floor(5.5) is 5 or Math.floor (0.11) is 0
+  // Math.random() produces a number between 0 and 1 (0.2939, 0.987)
+  // anything.length gives 
+
+
+
+
+
+
+
+
+
+
+  co
+  console.log(index);
   return destinations[location].monsters[index];
 }
+
+
+// 0 - wolf
+// 1 - bear
+// 2 - nothing
 
 export const DestinationMonster: React.FC = () => {
     const location = useRecoilValue(locationState);
