@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.inverted {
+  filter: hue-rotate(90deg);
+}
