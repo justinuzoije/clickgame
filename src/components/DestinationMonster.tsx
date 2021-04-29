@@ -14,26 +14,8 @@ import { monsters } from '../data/monsters';
 const getActiveMonster = (location: Location): Monster | undefined  => {
   const availableMonsters = destinations[location].monsters;
   const monsterChance = 1/(destinations[location].safetyLevel);
-  // console.log('There is a', monsterChance, 'chance to see a monster');
-  // let index;
-  // // First see is there monster?
-  // if (Math.random() < monsterChance) {
-  //   index = Math.floor(Math.random() * availableMonsters.length);
-  //   return destinations[location].monsters[index];
-  // } else {
-  //   index = -1;
-  //   return destinations[location].monsters[index];
-  // }
-
-  //Ternary Operator and Functional Version
   const index = Math.random() < monsterChance ? Math.floor(Math.random() * availableMonsters.length) : -1
-  
-  // Math.floor takes a number and takes off the trailing number. Math.floor(5.5) is 5 or Math.floor (0.11) is 0
-  // Math.random() produces a number between 0 and 1 (0.2939, 0.987)
-  // anything.length gives 
   return destinations[location].monsters[index];
-
-  
 }
 
 export const DestinationMonster: React.FC = () => {
