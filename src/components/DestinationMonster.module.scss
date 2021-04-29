@@ -1,0 +1,9 @@
+.inverted {
+  filter: hue-rotate(90deg);
+  filter: opacity(0.5);
+}
+
+.redShaded {
+  filter: grayscale(1);
+  filter: hue-rotate(180deg);
+}
