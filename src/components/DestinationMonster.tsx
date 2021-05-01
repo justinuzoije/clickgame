@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { locationState } from '../recoil/atoms';
 import { destinations } from '../data/destinations';
@@ -12,23 +12,37 @@ interface Props {}
 //TODO add ES Lint file from honeylove
 const getActiveMonster = (location: Location): Monster | undefined => {
   const availableMonsters = destinations[location].monsters;
-  const monsterChance = 1 / destinations[location].safetyLevel;
+  const monsterChance = destinations[location].dangerLevel / 100;
   const index = Math.random() < monsterChance ? Math.floor(Math.random() * availableMonsters.length) : -1;
   return destinations[location].monsters[index];
 };
 
 export const DestinationMonster: React.FC = () => {
   const location = useRecoilValue(locationState);
-  const monster = getActiveMonster(location);
+
+  const [isDamaged, setIsDamaged] = useState(false);
+  const [monster, setMonster] = useState<Monster | undefined>();
+
+  useEffect(() => {
+    setIsDamaged(false);
+    setMonster(getActiveMonster(location));
+  }, [location]);
 
   return monster ? (
     <div
       onClick={(e) => {
         e.stopPropagation();
+        setIsDamaged(false);
+        setTimeout(() => setIsDamaged(true), 50);
         console.log('clicked!');
       }}
     >
-      <img src={monsters[monster].image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.redShaded]: true })} />
+      <img
+        src={monsters[monster].image}
+        style={{ position: 'absolute', bottom: '0' }}
+        className={classNames({ [styles.redShaded]: isDamaged })}
+        alt="monster"
+      />
     </div>
   ) : (
     <React.Fragment />
@@ -50,3 +64,5 @@ export const DestinationMonster: React.FC = () => {
 .colorRed img:hover {filter:hue-rotate(0deg);}
 
 */
+
+// Next Assignmetn:  Give wolf like 5 hp, 10hp, for each click do 1dmg. Then death animation possibly with blur filter

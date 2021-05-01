@@ -1,9 +1,15 @@
-.inverted {
-  filter: hue-rotate(90deg);
-  filter: opacity(0.5);
+.redShaded {
+  animation-name: damage;
+  animation-duration: 4s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
 }
 
-.redShaded {
-  filter: grayscale(1);
-  filter: hue-rotate(180deg);
+@keyframes damage {
+  0% {
+    filter: sepia() saturate(5) hue-rotate(-60deg);
+  }
+  100% {
+    filter: none;
+  }
 }
