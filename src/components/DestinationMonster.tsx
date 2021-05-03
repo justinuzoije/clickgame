@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { locationState } from '../recoil/atoms';
+import { monsterHealthState } from '../recoil/atoms';
 import { destinations } from '../data/destinations';
 import { Monster } from '../enums/Monster.enum';
 import { Location } from '../enums/Location.enum';
@@ -65,4 +66,5 @@ export const DestinationMonster: React.FC = () => {
 
 */
 
-// Next Assignmetn:  Give wolf like 5 hp, 10hp, for each click do 1dmg. Then death animation possibly with blur filter
+// Next Assignment:  Give wolf like 5 hp, 10hp, for each click do 1dmg. Then death animation possibly with blur filter
+// And wants the hp to be randomly 5 + or - a number between 1 and 3
