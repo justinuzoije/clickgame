@@ -35,7 +35,6 @@ export const DestinationMonster: React.FC = () => {
         e.stopPropagation();
         setIsDamaged(false);
         setTimeout(() => setIsDamaged(true), 50);
-        console.log('clicked!');
       }}
     >
       <img
@@ -44,17 +43,13 @@ export const DestinationMonster: React.FC = () => {
         className={classNames({ [styles.redShaded]: isDamaged })}
         alt="monster"
       />
+      <p>{monsters[monster].description}</p>
+      <p>HP: {monsters[monster].hp}</p>
     </div>
   ) : (
     <React.Fragment />
   );
 };
-
-//Make the destinations have different chances of showing a monster. Associated with the Destination. Make it a percentage like 0.5 (between 0 and 1)
-// This would be on line 16, 1/chance  * availableMonsters.length
-// This is  the chance of a monster appearing on a particular DESTINATION
-
-// CSS Image Filter when you click
 
 // Use JavaScript Music and sound API. Load them up as MP3s
 
@@ -68,3 +63,8 @@ export const DestinationMonster: React.FC = () => {
 
 // Next Assignment:  Give wolf like 5 hp, 10hp, for each click do 1dmg. Then death animation possibly with blur filter
 // And wants the hp to be randomly 5 + or - a number between 1 and 3
+
+// Baby steps would be to make the console say OUCH when you lcik on a monster
+// Then give each monster a static hp
+// Then make the console display the static HP on click
+// Then make teh console subtract 1 from HP per click (goes into negative)
