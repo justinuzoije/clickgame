@@ -23,17 +23,29 @@ export const DestinationMonster: React.FC = () => {
 
   const [isDamaged, setIsDamaged] = useState(false);
   const [monster, setMonster] = useState<Monster | undefined>();
+  const [monsterHealth, setMonsterHealth] = useState<number | undefined>();
 
   useEffect(() => {
     setIsDamaged(false);
-    setMonster(getActiveMonster(location));
+    const activeMonster = getActiveMonster(location);
+    setMonster(activeMonster);
+    if (activeMonster) {
+      setMonsterHealth(monsters[activeMonster].hp);
+    }
   }, [location]);
+
+  const decrementHealth = (healthValue: number): number | undefined => {
+    let newHealth = healthValue--;
+    return newHealth;
+  };
 
   return monster ? (
     <div
       onClick={(e) => {
         e.stopPropagation();
         setIsDamaged(false);
+        console.log('Hit...');
+        // decrementHealth(monster);
         setTimeout(() => setIsDamaged(true), 50);
       }}
     >
@@ -68,3 +80,5 @@ export const DestinationMonster: React.FC = () => {
 // Then give each monster a static hp
 // Then make the console display the static HP on click
 // Then make teh console subtract 1 from HP per click (goes into negative)
+
+// css blurry filter, similar to red filters. Different kinds of blurs
