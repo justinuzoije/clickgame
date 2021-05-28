@@ -34,10 +34,10 @@ export const DestinationMonster: React.FC = () => {
     }
   }, [location]);
 
-  const decrementHealth = (healthValue: number): number | undefined => {
-    let newHealth = healthValue--;
-    return newHealth;
-  };
+  // const decrementHealth = (healthValue: number): number | undefined => {
+  //   let newHealth = healthValue--;
+  //   return newHealth;
+  // };
 
   return monster ? (
     <div
@@ -45,7 +45,7 @@ export const DestinationMonster: React.FC = () => {
         e.stopPropagation();
         setIsDamaged(false);
         console.log('Hit...');
-        // decrementHealth(monster);
+        setMonsterHealth(1);
         setTimeout(() => setIsDamaged(true), 50);
       }}
     >
@@ -56,7 +56,7 @@ export const DestinationMonster: React.FC = () => {
         alt="monster"
       />
       <p>{monsters[monster].description}</p>
-      <p>HP: {monsters[monster].hp}</p>
+      <p>HP: {monsterHealth}</p>
     </div>
   ) : (
     <React.Fragment />
