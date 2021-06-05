@@ -1,5 +1,5 @@
 import { Location } from '../enums/Location.enum'
-import { Monster } from '../enums/Monster.enum'
+import { MonsterKey } from '../enums/MonsterKey.enum'
 
 export const destinations = {
     [Location.Forest1]: {
@@ -8,7 +8,7 @@ export const destinations = {
       label: 'Forest Level 1',
       connections: [Location.Forest2],
       dangerLevel: 0,
-      monsters: [Monster.Wolf]
+      monsters: [MonsterKey.Wolf]
     },
     [Location.Forest2]: {
       image: 'forest_2.jpg',
@@ -16,7 +16,7 @@ export const destinations = {
       label: 'Forest Level 2',
       connections: [Location.Forest1, Location.Forest3],
       dangerLevel: 50,
-      monsters: [Monster.Bear],
+      monsters: [MonsterKey.Bear],
     },
     [Location.Forest3]: {
         image: 'forest_3.jpg',
@@ -24,7 +24,7 @@ export const destinations = {
         label: 'Forest Level 3',
         connections: [Location.Forest2, Location.Forest4],
         dangerLevel: 50,
-        monsters: [Monster.Wolf, Monster.Bear],
+        monsters: [MonsterKey.Wolf, MonsterKey.Bear],
     },
     [Location.Forest4]: {
         image: 'forest_4.jpg',
@@ -32,6 +32,6 @@ export const destinations = {
         label: 'Forest Level 4',
         connections: [Location.Forest3],
         dangerLevel: 100,
-        monsters: [Monster.Wolf, Monster.Bear],
+        monsters: [MonsterKey.Wolf, MonsterKey.Bear],
     },
 };

@@ -1,14 +1,20 @@
-import { Monster } from '../enums/Monster.enum'
+import { MonsterKey } from '../enums/MonsterKey.enum'
+
+export interface Monster {
+  image: string;
+  description: string;
+  hp: number;
+}
 
 export const monsters = {
-    [Monster.Wolf]: {
+    [MonsterKey.Wolf]: {
       image: 'wolf.png',
       description: 'Suddenly in front of you a wolf attacks!',
       hp: 5,
-    },
-    [Monster.Bear]: {
+    } as Monster,
+    [MonsterKey.Bear]: {
         image: 'bear.png',
         description: 'Suddenly in front of you a bear attacks!',
         hp: 10,
-    },
+    } as Monster,
 };

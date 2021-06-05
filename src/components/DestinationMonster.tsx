@@ -3,15 +3,15 @@ import { useRecoilValue } from 'recoil';
 import { locationState } from '../recoil/atoms';
 import { monsterHealthState } from '../recoil/atoms';
 import { destinations } from '../data/destinations';
-import { Monster } from '../enums/Monster.enum';
+import { MonsterKey } from '../enums/MonsterKey.enum';
 import { Location } from '../enums/Location.enum';
-import { monsters } from '../data/monsters';
+import { monsters, Monster } from '../data/monsters';
 import styles from './DestinationMonster.module.scss';
 import classNames from 'classnames';
 
 interface Props {}
-//TODO add ES Lint file from honeylove
-const getActiveMonster = (location: Location): Monster | undefined => {
+
+const getActiveMonsterKey = (location: Location): MonsterKey | undefined => {
   const availableMonsters = destinations[location].monsters;
   const monsterChance = destinations[location].dangerLevel / 100;
   const index = Math.random() < monsterChance ? Math.floor(Math.random() * availableMonsters.length) : -1;
@@ -21,42 +21,34 @@ const getActiveMonster = (location: Location): Monster | undefined => {
 export const DestinationMonster: React.FC = () => {
   const location = useRecoilValue(locationState);
 
-  const [isDamaged, setIsDamaged] = useState(false);
+  const [animateDamaged, setAnimateDamaged] = useState(false);
   const [monster, setMonster] = useState<Monster | undefined>();
-  const [monsterHealth, setMonsterHealth] = useState<number | undefined>();
+  const [monsterDamage, setMonsterDamage] = useState<number>(0);
 
   useEffect(() => {
-    setIsDamaged(false);
-    const activeMonster = getActiveMonster(location);
-    setMonster(activeMonster);
-    if (activeMonster) {
-      setMonsterHealth(monsters[activeMonster].hp);
-    }
+    setAnimateDamaged(false);
+    const activeMonsterKey = getActiveMonsterKey(location);
+    setMonster(activeMonsterKey && monsters[activeMonsterKey]);
+    setMonsterDamage(0);
   }, [location]);
 
-  // const decrementHealth = (healthValue: number): number | undefined => {
-  //   let newHealth = healthValue--;
-  //   return newHealth;
-  // };
+  const getMonsterHealth = (): number | undefined => {
+    return monster ? Math.max(monster.hp - monsterDamage, 0) : undefined;
+  };
 
   return monster ? (
     <div
       onClick={(e) => {
         e.stopPropagation();
-        setIsDamaged(false);
+        setAnimateDamaged(false);
         console.log('Hit...');
-        setMonsterHealth(1);
-        setTimeout(() => setIsDamaged(true), 50);
+        setMonsterDamage(monsterDamage + 1);
+        setTimeout(() => setAnimateDamaged(true), 50);
       }}
     >
-      <img
-        src={monsters[monster].image}
-        style={{ position: 'absolute', bottom: '0' }}
-        className={classNames({ [styles.redShaded]: isDamaged })}
-        alt="monster"
-      />
-      <p>{monsters[monster].description}</p>
-      <p>HP: {monsterHealth}</p>
+      <img src={monster.image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.redShaded]: animateDamaged })} alt="monster" />
+      <p>{monster.description}</p>
+      <p>HP: {getMonsterHealth()}</p>
     </div>
   ) : (
     <React.Fragment />
@@ -82,3 +74,5 @@ export const DestinationMonster: React.FC = () => {
 // Then make teh console subtract 1 from HP per click (goes into negative)
 
 // css blurry filter, similar to red filters. Different kinds of blurs
+
+// June 4, 2021 - Next task is to make monster have graphics as it goes away . Step 1 make it disappear. Step 2 add animation for when it does
