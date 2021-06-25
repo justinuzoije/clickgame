@@ -17,7 +17,7 @@ export const Screen: React.FC = () => {
     //const setLocation = useSetRecoilState(locationState); // to just set the location
     
     const move = (e: React.MouseEvent) => {
-        console.log("Walking...");
+        //console.log("Walking...");
     }
 
    return (

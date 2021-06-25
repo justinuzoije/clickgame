@@ -36,17 +36,24 @@ export const DestinationMonster: React.FC = () => {
     return monster ? Math.max(monster.hp - monsterDamage, 0) : undefined;
   };
 
+  const isMonsterDead = (): boolean => {
+    const monsterHealth = getMonsterHealth();
+    return (typeof(monsterHealth) === 'number' && monsterHealth < 1);
+  }
+
   return monster ? (
     <div
       onClick={(e) => {
-        e.stopPropagation();
-        setAnimateDamaged(false);
-        console.log('Hit...');
-        setMonsterDamage(monsterDamage + 1);
-        setTimeout(() => setAnimateDamaged(true), 50);
+        const monsterHealth = getMonsterHealth();
+        if (monsterHealth && monsterHealth > 0) {
+          e.stopPropagation();
+          setAnimateDamaged(false);
+          setMonsterDamage(monsterDamage + 1);
+          setTimeout(() => setAnimateDamaged(true), 50);
+        }
       }}
     >
-      <img src={monster.image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.dead]: animateDamaged })} alt="monster" />
+      <img src={monster.image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.redShaded]: animateDamaged, [styles.dead]: isMonsterDead() })} alt="monster" />
       <p>{monster.description}</p>
       <p>HP: {getMonsterHealth()}</p>
     </div>
