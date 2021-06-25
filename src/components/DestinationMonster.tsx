@@ -46,7 +46,7 @@ export const DestinationMonster: React.FC = () => {
         setTimeout(() => setAnimateDamaged(true), 50);
       }}
     >
-      <img src={monster.image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.redShaded]: animateDamaged })} alt="monster" />
+      <img src={monster.image} style={{ position: 'absolute', bottom: '0' }} className={classNames({ [styles.dead]: animateDamaged })} alt="monster" />
       <p>{monster.description}</p>
       <p>HP: {getMonsterHealth()}</p>
     </div>
@@ -68,11 +68,8 @@ export const DestinationMonster: React.FC = () => {
 // Next Assignment:  Give wolf like 5 hp, 10hp, for each click do 1dmg. Then death animation possibly with blur filter
 // And wants the hp to be randomly 5 + or - a number between 1 and 3
 
-// Baby steps would be to make the console say OUCH when you lcik on a monster
-// Then give each monster a static hp
-// Then make the console display the static HP on click
-// Then make teh console subtract 1 from HP per click (goes into negative)
+
 
 // css blurry filter, similar to red filters. Different kinds of blurs
 
-// June 4, 2021 - Next task is to make monster have graphics as it goes away . Step 1 make it disappear. Step 2 add animation for when it does
+// Next task is to make monster have graphics as it goes away . Step 1 make it disappear. Step 2 add animation for when it does

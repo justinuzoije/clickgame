@@ -5,11 +5,28 @@
   animation-iteration-count: 1;
 }
 
+.dead {
+  animation-name: disappear;
+  animation-duration: 4s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 @keyframes damage {
   0% {
     filter: sepia() saturate(5) hue-rotate(-60deg);
   }
   100% {
     filter: none;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    filter: none
+  }
+  100% {
+    filter: blur(12px) grayscale(100%) opacity(10%);
   }
 }
